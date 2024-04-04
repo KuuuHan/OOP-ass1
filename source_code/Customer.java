@@ -1,9 +1,10 @@
+package source_code;
 import java.util.List;
 
 /**
  * @author Han Duc Khang -  s3986602
  */
-public class Customer {
+public abstract class Customer {
     private String id;
     private String name;
     private InsuranceCard insurancecard;
