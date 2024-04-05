@@ -6,6 +6,7 @@ package source_code;
 import java.util.List;
 
 public class PolicyHolder extends Customer{
+    private List<Dependent> dependents;
 
     public PolicyHolder(String id, String name, InsuranceCard insurancecard, List<Claim> claims) {
         super(id, name, insurancecard, claims);
