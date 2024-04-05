@@ -38,7 +38,7 @@ public class Claim {
         this.insuredPerson = insuredPerson;
     }
 
-    // Link with the insurancecard
+    // Link with the insuranceCard
     public InsuranceCard getInsurancecard() {
         return insurancecard;
     }
@@ -48,5 +48,9 @@ public class Claim {
     }
     public String getCardNumber() {
         return insurancecard.getCardNum();
+    }
+
+    public String getClaimID() {
+        return claimID;
     }
 }
