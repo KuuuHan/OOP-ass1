@@ -1,4 +1,4 @@
-package source_code;
+package Module;
 /**
  * @ author Han Duc Khang -  s3986602
  */

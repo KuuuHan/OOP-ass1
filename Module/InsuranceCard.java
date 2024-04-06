@@ -1,4 +1,4 @@
-package source_code;
+package Module;
 
 public class InsuranceCard {
     private String cardNum;
