@@ -1,5 +1,7 @@
 package source_code;
-
+/**
+ * @Author Han Duc Khang - s3986602
+ */
 import java.util.List;
 
 public interface ClaimProcess {
@@ -8,4 +10,5 @@ public interface ClaimProcess {
     void delete(Claim claim);
     Claim getOne(String claimID);
     List<Claim> getAll();
+    Customer getCustomerID(String id);
 }
