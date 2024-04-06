@@ -6,7 +6,9 @@ package source_code;
 
 import java.util.List;
 public class Dependent extends Customer {
-    public Dependent(String id, String name, InsuranceCard insurancecard, List<Claim> claims) {
+
+    public Dependent(String id, String name, InsuranceCard insurancecard, List<Claim> claims, PolicyHolder policyHolder) {
         super(id, name, insurancecard, claims);
+        this.policyHolder = policyHolder;
     }
 }

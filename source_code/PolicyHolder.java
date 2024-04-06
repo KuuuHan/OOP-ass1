@@ -5,12 +5,11 @@ package source_code;
 
 import java.util.List;
 
-public class PolicyHolder extends Customer{
+public class  PolicyHolder extends Customer{
     private List<Dependent> dependents;
 
     public PolicyHolder(String id, String name, InsuranceCard insurancecard, List<Claim> claims) {
         super(id, name, insurancecard, claims);
-        this.dependents = dependents;
     }
 
     public List<Dependent> getDependents() {
@@ -19,4 +18,5 @@ public class PolicyHolder extends Customer{
     public void setDependents(List<Dependent> dependents) {
         this.dependents = dependents;
     }
+
 }

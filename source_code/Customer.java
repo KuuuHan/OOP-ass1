@@ -1,5 +1,6 @@
 package source_code;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @author Han Duc Khang -  s3986602
@@ -35,19 +36,11 @@ public abstract class Customer {
     }
 
     //setters
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setId(String id) {this.id = id;}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) {this.name = name;}
 
-    public void setInsurancecard(InsuranceCard insurancecard) {
-        this.insurancecard = insurancecard;
-    }
+    public boolean customerIdValid(){return Pattern.matches("c-\\d{7}", id);}
 
-    public void setClaims(List<Claim> claims) {
-        this.claims = claims;
-    }
+
 }
