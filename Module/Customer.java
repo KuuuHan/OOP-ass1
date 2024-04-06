@@ -1,4 +1,6 @@
-package source_code;
+package Module;
+import Module.InsuranceCard;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -6,20 +8,20 @@ import java.util.regex.Pattern;
  * @author Han Duc Khang -  s3986602
  */
 public abstract class Customer {
-    private String id;
+    private static String id;
     private String name;
-    private InsuranceCard insurancecard;
-    private List<Claim> claims;
+    private final InsuranceCard insurancecard;
+    private final List<Claim> claims;
 
     public Customer(String id, String name, InsuranceCard insurancecard, List<Claim> claims) {
-        this.id = id;
+        Customer.id = id;
         this.name = name;
         this.insurancecard = insurancecard;
         this.claims = claims;
     }
 
     // Getters
-    public String getId() {
+    public static String getId() {
         return id;
     }
 
@@ -36,11 +38,15 @@ public abstract class Customer {
     }
 
     //setters
-    public void setId(String id) {this.id = id;}
+    public void setId(String id) {
+        Customer.id = id;}
 
     public void setName(String name) {this.name = name;}
 
     public boolean customerIdValid(){return Pattern.matches("c-\\d{7}", id);}
 
-
+    @Override
+    public String toString() {
+        return id + "," + name + "," + insurancecard + "," + claims;
+    }
 }

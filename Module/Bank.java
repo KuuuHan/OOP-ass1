@@ -1,4 +1,4 @@
-package source_code;
+package Module;
 /**
  * @Author Han Duc Khang - s3986602
  */
@@ -36,5 +36,10 @@ public class Bank {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    @Override
+    public String toString() {
+        return bankName + "," + accountHolderName + "," + accountNumber;
     }
 }
