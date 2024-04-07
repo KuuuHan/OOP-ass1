@@ -1,6 +1,9 @@
 import Module.ClaimProcessManager;
 import View.SystemView;
 import Controller.ClaimController;
+import Module.Claim;
+import Module.InsuranceCard;
+import Module.Bank;
 
 
 import java.util.ArrayList;

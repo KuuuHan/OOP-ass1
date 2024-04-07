@@ -69,9 +69,23 @@ public class Claim {
     public Set<String> getDocuments() {
         return this.documents;
     }
+
     public Customer getCustomer() {
         return this.customer;
     }
+
+    public void setExamDate(Date examDate) {
+        this.examDate = examDate;
+    }
+
+    public void setClaimAmount(double claimAmount) {
+        this.claimAmount = claimAmount;
+    }
+
+    public void setStatus(String status) {
+        this.claimStatus = ClaimStatus.valueOf(status);
+    }
+
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
@@ -90,4 +104,6 @@ public class Claim {
                 + insurancecard.getPolicyOwner() + ","
                 + insurancecard.getCardNum();
     }
+
+
 }

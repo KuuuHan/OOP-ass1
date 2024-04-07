@@ -13,7 +13,7 @@ public class ClaimProcessManager implements ClaimProcess{
     private List<Claim> claims;
     private Set<Customer> customers;
 
-    public ClaimProcessManager() {
+    public ClaimProcessManager(Set<Customer> customers, List<Claim> claims) {
         this.claims = new ArrayList<>();
         this.customers = new HashSet<>();
     }
@@ -60,6 +60,16 @@ public class ClaimProcessManager implements ClaimProcess{
 
     @Override
     public Customer getCustomerById(String id) {
+        for (Customer customer : customers) {
+            if (customer.getId().equals(id)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Customer getCustomerId(String id) {
         for (Customer customer : customers)
         {
             if (customer.getId().equals(id))

@@ -2,30 +2,32 @@ package Controller;
 
 import Module.Claim;
 import Module.ClaimProcess;
-import View.SystemView;
+import Module.ClaimProcessManager;
 import Module.Customer;
-import Controller.FileHandler;
+import View.SystemView;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.Set;
 
 /**
  * @Author Han Duc Khang - s3986602
  */
 public class ClaimController {
-    private ClaimProcess claimProcess;
+    private ClaimProcess claimInterface;
+    private ClaimProcessManager claimProcessManager;
     private SystemView systemView;
     private List<Customer> customers;
-    public ClaimController(ClaimProcess claimProcess, SystemView systemView, List<Customer> customers) {
-        this.claimProcess = claimProcess;
+
+    public ClaimController(ClaimProcess claimInterface, SystemView systemView, List<Customer> customers) {
+        this.claimInterface = claimInterface;
         this.systemView = systemView;
         this.customers = customers;
     }
     public void setSystemView(SystemView systemView) {this.systemView = systemView;}
     public void addClaim(Claim claim) {
-        claimProcess.add(claim);
+        claimInterface.add(claim);
         FileHandler.writeToFileClaim(claim);
     }
 
@@ -40,35 +42,49 @@ public class ClaimController {
 
 
     public void updateClaim(Claim claim) {
-        claimProcess.update(claim);
+        claimInterface.update(claim);
     }
     public void deleteClaim(Claim claim) {
-        claimProcess.delete(claim);
+        claimInterface.delete(claim);
     }
-    Claim viewClaim(String claimID) {return claimProcess.getOne(claimID);}
+    Claim viewClaim(String claimID) {return claimInterface.getOne(claimID);}
 
-    public void viewAllClaims() {
-        systemView.displayAll(claimProcess.getAll());
+    public Set<Claim> viewAllClaims() {
+        return claimInterface.getAll();
+    }
+    
+    public Claim getClaim(String claimID) {
+        return claimProcessManager.getOne(claimID);
     }
 
 
-    public void readFile(String fileName) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                String claimID = parts[0];
-                String claimDate = parts[1];
-                double claimAmount = Double.parseDouble(parts[2]);
-                String claimStatus = parts[3];
-                String insuredPerson = parts[4];
-                String bankName = parts[5];
+    public void mainMenuApp(){
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        do {
+            systemView.displayMainMenu();
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    systemView.newClaimMenu();
+                    break;
+                case 2:
+                    systemView.updateClaimMenu();
+                    break;
+                case 3:
+                    systemView.deleteClaimMenu();
+                    break;
+                case 4:
+                    systemView.viewAllClaimMenu();
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
             }
-        } catch (IOException e) {
-            System.out.println("An error occurred while trying to read the file: " + e.getMessage());
-        }
+        } while (choice != 5);
     }
+    
 
     public String generateCardNumber() { // Generate a random card number
         Random random = new Random();
