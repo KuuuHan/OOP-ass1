@@ -59,7 +59,7 @@ public class ClaimProcessManager implements ClaimProcess{
     }
 
     @Override
-    public Customer getCustomerId(String id) {
+    public Customer getCustomerById(String id) {
         for (Customer customer : customers)
         {
             if (customer.getId().equals(id))

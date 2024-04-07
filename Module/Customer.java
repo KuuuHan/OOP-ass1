@@ -1,10 +1,8 @@
 package Module;
-import Module.InsuranceCard;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
+
 
 /**
  * @author Han Duc Khang -  s3986602
@@ -16,7 +14,7 @@ public abstract class Customer {
     private Set<Claim> claims;
 
     public Customer(String id, String name, InsuranceCard insurancecard, Set<Claim> claims) {
-        this.id = id;
+        this.id = id;                                                // format: "C" + 7 digits
         this.name = name;
         this.insurancecard = insurancecard;
         this.claims = claims != null ? claims : new HashSet<>();
@@ -33,6 +31,10 @@ public abstract class Customer {
 
     public InsuranceCard getInsurancecard() {
         return insurancecard;
+    }
+
+    public void setInsurancecard(InsuranceCard insurancecard) {
+        this.insurancecard = insurancecard;
     }
 
     public Set<Claim> getClaims() {

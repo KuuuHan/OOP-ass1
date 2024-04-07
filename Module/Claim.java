@@ -5,6 +5,7 @@ package Module;
 
 import java.util.Date;
 import java.util.Set;
+
 public class Claim {
     private Customer customer;
     private String claimID;
