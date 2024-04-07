@@ -1,3 +1,10 @@
+/**
+ * This class represents a Bank in the Claim Management System.
+ * It contains all the details of a bank, including the bank name, account holder name, and account number.
+ * @author Han Duc Khang - s3986602
+ */
+
+
 import Controller.FileHandler;
 import Module.ClaimProcessManager;
 import View.SystemView;

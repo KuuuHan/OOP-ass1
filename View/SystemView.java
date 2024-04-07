@@ -1,5 +1,7 @@
 package View;
 /**
+ *  This class is responsible for managing the list of claims and customers in the Claim Management System.
+ *  It provides methods to add, update, delete, and view claims and customers.
  * @Author Han Duc Khang - s3986602
  */
 

@@ -1,6 +1,8 @@
 package Controller;
 
 /**
+ * This class is responsible for handling all the file operations in the Claim Management System.
+ * It provides methods to read from and write to files.
  * @Author Han Duc Khang - s3986602
  */
 

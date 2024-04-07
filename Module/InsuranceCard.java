@@ -4,6 +4,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class represents an Insurance Card in the Claim Management System.
+ * It contains all the details of an insurance card, including the card number, card holder, policy owner, and expiration date.
+ * @author Han Duc Khang - s3986602
+ */
+
 public class InsuranceCard {
     private static Map<String, InsuranceCard> cards = new HashMap<>();
     private String cardNum;
