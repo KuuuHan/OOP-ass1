@@ -31,8 +31,15 @@ public class InsuranceCard {
         return policyOwner;
     }
 
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
     public static InsuranceCard getInsuranceCardByCardNumber(String cardNum) {
         return cards.get(cardNum);
     }
 
+    public String getCardNumber() {
+        return cardNum;
+    }
 }

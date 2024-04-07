@@ -6,10 +6,7 @@ import Module.ClaimProcessManager;
 import Module.Customer;
 import View.SystemView;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Author Han Duc Khang - s3986602
@@ -30,7 +27,9 @@ public class ClaimController {
     public void setSystemView(SystemView systemView) {this.systemView = systemView;}
     public void addClaim(Claim claim) {
         claimInterface.add(claim);
-        fileHandler.writeToFileClaim(claim);
+        List<Claim> claims = new ArrayList<>();
+        claims.add(claim);
+        fileHandler.writeToFileClaim("src/claims.txt", claims);
     }
 
     public Customer getCustomerById(String id) {
