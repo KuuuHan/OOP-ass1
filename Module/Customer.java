@@ -48,7 +48,7 @@ public abstract class Customer {
         return claims;
     }
 
-    public void addClaim(Claim claim) {claims.add(claim);}
+    public void addCustomerClaim(Claim claim) {this.claims.add(claim);}
 
     @Override
     public String toString() {

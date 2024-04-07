@@ -23,20 +23,16 @@ public class SystemView {
     }
 
     public void displayMainMenu() { // display
-
-                System.out.println("====== WELCOME TO CLAIM MANAGEMENT SYSTEM ======");
-                System.out.println("       --------------------------------");
-                System.out.println("Please choose the following options:");
-                System.out.println("1. Add a new claim");
-                System.out.println("2. Update a claim");
-                System.out.println("3. Delete a claim");
-                System.out.println("4. Display all claims");
-                System.out.println("5. Exit");
-    }
-
-    public int getUserChoiceScanner(){
+        System.out.println(" ");
+        System.out.println("====== WELCOME TO CLAIM MANAGEMENT SYSTEM ======");
+        System.out.println("       --------------------------------");
+        System.out.println("Please choose the following options:");
+        System.out.println("1. Add a new claim");
+        System.out.println("2. Update a claim");
+        System.out.println("3. Delete a claim");
+        System.out.println("4. Display all claims");
+        System.out.println("5. Exit");
         System.out.println("Please enter your choice: ");
-        return scanner.nextInt();
     }
 
     //SUB FUNCTION
@@ -78,8 +74,12 @@ public class SystemView {
     public void newClaimMenu() { // 1. create new claim
         System.out.println("======= New claim menu =======");
 
-        System.out.println("Enter claim ID: ");
+        System.out.println("Enter claim ID (f-xxxxxxxxxx): ");
         String claimID = scanner.nextLine();
+        while (!claimID.matches("f-\\d{10}")) {
+            System.out.println("Invalid claim ID. Please try again.");
+            claimID = scanner.nextLine();
+        }
 
         Date claimDate = new Date(); //get current date, set system date as claim date
 
@@ -93,43 +93,61 @@ public class SystemView {
             System.out.println("Invalid date format");
         }
 
-        System.out.println("Enter claim amount: "); //get claim amount
-        double claimAmount = scanner.nextDouble();
-        scanner.nextLine();
+        double claimAmount = 0;
+        do{
+            System.out.println("Enter claim amount: "); //get claim amount
+            claimAmount = scanner.nextDouble();
+            scanner.nextLine();
+            if(claimAmount < 0){
+                System.out.println("Invalid amount. Please try again.");
+            }
+        }while(claimAmount < 0);
+
+
 
         ClaimStatus status = ClaimStatus.New; //set status to new
 
+
         //working with insurance card
-        Customer insuredPerson = null;
-        InsuranceCard card = null;
-        while (insuredPerson == null) {
-            System.out.println("Enter insured person ID: "); //get insured person ID
+        Customer insuredPerson;
+        do {
+            System.out.print("Enter Insured Person's ID: ");
+            System.out.print("Please enter as follow format c-xxxxxxx(7 digit):");
             String insuredPersonId = scanner.nextLine();
-            insuredPerson = controller.getCustomerById(insuredPersonId);
-            if (insuredPerson == null) { //if there is no person with such ID, display message
-                System.out.println("There is no person with such ID. Please try again.");
+
+            insuredPerson =  controller.getCustomerById(insuredPersonId);
+            if (insuredPerson == null) System.out.println("Insured Person does not exist!");
+        } while (insuredPerson == null);
+
+        String cardNumber = insuredPerson.getId();
+
+        List<String> documents = new ArrayList<>();
+        String documentName;
+        do {
+            System.out.print("Enter document name (or type 'none' if you dont have one): ");
+            documentName = scanner.nextLine();
+            if (!documentName.equals("none")) {
+                String documentFileName = scanner + "_" + cardNumber + "_" + documentName + ".pdf";
+                documents.add(documentFileName);
             }
-            card = getOrCreateInsuranceCard(insuredPerson);
-            // if not create a new card
-        }
+        } while (!documentName.equals("done"));
 
 
-        //get bank information
-        System.out.println("Enter bank name: "); //get bank name
+        System.out.println("Banking Info:");
+        System.out.print("Enter bank Name: ");
         String bankName = scanner.nextLine();
-        System.out.println("Enter account holder name: "); //get account holder name
-        String accountHolderName = scanner.nextLine();
-        System.out.println("Enter account number: "); //get account number
+        System.out.print("Enter owner Name: ");
+        String ownerName = scanner.nextLine();
+        System.out.print(" Enter account Number: ");
         String accountNumber = scanner.nextLine();
-        Bank receiverBank = new Bank(bankName, accountHolderName, accountNumber); //create bank object
 
-        //get documents
-        System.out.println("Enter documents (separated by comma): "); //get documents (format: abc.pdf)
-        String documentsString = scanner.nextLine();
-        List<String> documents = (Arrays.asList(documentsString.split(",")));//convert string to list
+        Bank bank = new Bank(bankName, ownerName, accountNumber);
 
-        Claim claim = new Claim(claimID, claimDate, examDate, claimAmount, status, insuredPerson.getId(), card.getCardNum(), receiverBank, documents); //create claim object
-        controller.addClaim(claim);
+        Claim newClaim = new Claim(claimID, claimDate, examDate, claimAmount, status, insuredPerson.getId(), cardNumber, bank, documents);
+
+        insuredPerson.addCustomerClaim(newClaim);
+        controller.addClaim(newClaim);
+
     }
 
     public void updateClaimMenu() { // 2. update claim
