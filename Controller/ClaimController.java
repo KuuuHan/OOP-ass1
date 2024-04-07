@@ -19,16 +19,18 @@ public class ClaimController {
     private ClaimProcessManager claimProcessManager;
     private SystemView systemView;
     private List<Customer> customers;
+    private FileHandler fileHandler;
 
     public ClaimController(ClaimProcess claimInterface, SystemView systemView, List<Customer> customers) {
         this.claimInterface = claimInterface;
         this.systemView = systemView;
         this.customers = customers;
+        this.fileHandler = new FileHandler();
     }
     public void setSystemView(SystemView systemView) {this.systemView = systemView;}
     public void addClaim(Claim claim) {
         claimInterface.add(claim);
-        FileHandler.writeToFileClaim(claim);
+        fileHandler.writeToFileClaim(claim);
     }
 
     public Customer getCustomerById(String id) {

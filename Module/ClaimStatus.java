@@ -1,5 +1,5 @@
 package Module;
 
 public enum ClaimStatus {
-    New, Done
+    New, Processing, Done
 }

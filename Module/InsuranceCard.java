@@ -1,8 +1,11 @@
 package Module;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InsuranceCard {
+    private static Map<String, InsuranceCard> cards = new HashMap<>();
     private String cardNum;
     private String cardHolder;
     private String policyOwner;
@@ -13,6 +16,7 @@ public class InsuranceCard {
         this.cardHolder = cardHolder;
         this.policyOwner = policyOwner;
         this.expirationDate = expirationDate;
+        cards.put(cardNum, this); // Add the card to the map
     }
 
     public String getCardNum() {
@@ -25,6 +29,10 @@ public class InsuranceCard {
 
     public String getPolicyOwner() {
         return policyOwner;
+    }
+
+    public static InsuranceCard getInsuranceCardByCardNumber(String cardNum) {
+        return cards.get(cardNum);
     }
 
 }

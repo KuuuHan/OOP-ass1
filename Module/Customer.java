@@ -1,6 +1,7 @@
 package Module;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -10,13 +11,15 @@ import java.util.Set;
 public abstract class Customer {
     private String id;
     private String name;
+    private String insuranceCard;
     private InsuranceCard insurancecard;
     private Set<Claim> claims;
 
-    public Customer(String id, String name, InsuranceCard insurancecard, Set<Claim> claims) {
+
+    public Customer(String id, String name, String insuranceCardID, List<String> claimID) {
         this.id = id;                                                // format: "C" + 7 digits
         this.name = name;
-        this.insurancecard = insurancecard;
+        this.insuranceCard = insuranceCardID;
         this.claims = claims != null ? claims : new HashSet<>();
     }
 
@@ -33,7 +36,7 @@ public abstract class Customer {
         return insurancecard;
     }
 
-    public void setInsurancecard(InsuranceCard insurancecard) {
+    public void setInsuranceCard(InsuranceCard insurancecard) {
         this.insurancecard = insurancecard;
     }
 

@@ -188,28 +188,15 @@ public class SystemView {
         System.out.println("Claim deleted successfully...");
     }
 
-    public void displayAll(Set<Claim> all) { //display all claims
-        int choice;
-        do {
-            if (!all.isEmpty()) { //if there is no claim, display message
-                System.out.println("======= All claims menu =======");
-                for (Claim claim : all) {
-                    System.out.println(claim);
-                }
-            }
-            System.out.println("Press 0 to return to main menu");
-            choice = scanner.nextInt();
-        } while (choice != 0);
-
-    }
-
-    public void viewAllClaimMenu() {
+    public void viewAllClaimMenu() { // 4. view all claims
         Set<Claim> all = controller.viewAllClaims();
         System.out.println("======= All claims menu =======");
         if (all.isEmpty()) {
             System.out.println("There is no claim to display.");
         } else {
-            displayAll(all);
+            for (Claim claim : all) {
+                System.out.println(claim);
+            }
         }
     }
 

@@ -83,4 +83,13 @@ public class ClaimProcessManager implements ClaimProcess{
     public void addCustomer(Customer customer) { //add the customer.
         customers.add(customer);
     }
+
+    public Claim getClaimById(String claimID) { //get the claim by id.
+        for (Claim claim : claims) {
+            if (claim.getClaimID().equals(claimID)) {
+                return claim;
+            }
+        }
+        return null;
+    }
 }

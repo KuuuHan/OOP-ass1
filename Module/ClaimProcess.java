@@ -13,4 +13,5 @@ public interface ClaimProcess {
     Customer getCustomerById(String id);
 
     Customer getCustomerId(String id);
+    Claim getClaimById(String id);
 }

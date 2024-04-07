@@ -5,7 +5,7 @@ package Module;
 public class Bank {
     private String bankName;
     private String accountHolderName;
-    private String accountNumber;
+    private String accountNumber;           // Account number format: 123456789
 
     public Bank(String bankName, String accountHolderName, String accountNumber) {
         this.bankName = bankName;
