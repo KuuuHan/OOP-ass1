@@ -1,12 +1,14 @@
 package Module;
 
+import java.util.Date;
+
 public class InsuranceCard {
     private String cardNum;
     private String cardHolder;
     private String policyOwner;
-    private String expirationDate;
+    Date expirationDate;
 
-    public InsuranceCard(String cardNum, String cardHolder, String policyOwner, String expirationDate) {
+    public InsuranceCard(String cardNum, String cardHolder, String policyOwner, Date expirationDate) {
         this.cardNum = cardNum;
         this.cardHolder = cardHolder;
         this.policyOwner = policyOwner;
@@ -25,23 +27,4 @@ public class InsuranceCard {
         return policyOwner;
     }
 
-    public String getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setCardNum(String cardNum) {
-        this.cardNum = cardNum;
-    }
-
-    public void setCardHolder(String cardHolder) {
-        this.cardHolder = cardHolder;
-    }
-
-    public void setPolicyOwner(String policyOwner) {
-        this.policyOwner = policyOwner;
-    }
-
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
 }

@@ -2,12 +2,13 @@ package Module;
 /**
  * @Author Han Duc Khang - s3986602
  */
-import java.util.List;
+import java.util.Set;
 
 public interface ClaimProcess {
     void add(Claim claim);
     void update(Claim claim);
     void delete(Claim claim);
     Claim getOne(String claimID);
-    List<Claim> getAll();
+    Set<Claim> getAll();
+    Customer getCustomerId(String id);
 }

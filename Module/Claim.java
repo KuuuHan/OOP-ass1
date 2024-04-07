@@ -4,23 +4,23 @@ package Module;
  */
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 public class Claim {
     private Customer customer;
     private String claimID;
     private Date claimDate;
     private Date examDate;
     private double claimAmount;
-    private String claimStatus;
-    private String insuredPerson;
+    private ClaimStatus claimStatus;
+    private Customer insuredPerson;
     private InsuranceCard insurancecard;
     private Bank receiverBank;
-    private List<String> documents;
+    private Set<String> documents;
 
 
     public Claim(String claimID, Date claimDate, Date examDate, double claimAmount,
-                 String claimStatus, String insuredPerson, InsuranceCard insurancecard,
-                 Bank receiverBank, List<String> documents)
+                 ClaimStatus claimStatus, Customer insuredPerson, InsuranceCard insurancecard,
+                 Bank receiverBank, Set<String> documents)
     {
         this.claimID = claimID;                     // ID of the claim (format as f-123456789)
         this.claimDate = claimDate;                 // Date of the claim created
@@ -49,11 +49,11 @@ public class Claim {
         return claimAmount;
     }
 
-    public String getClaimStatus() {
+    public ClaimStatus getClaimStatus() {
         return claimStatus;
     }
 
-    public String getInsuredPerson() {
+    public Customer getInsuredPerson() {
         return insuredPerson;
     }
 
@@ -65,11 +65,15 @@ public class Claim {
         return receiverBank;
     }
 
-    public List<String> getDocuments() {
-        return documents;
+    public Set<String> getDocuments() {
+        return this.documents;
     }
     public Customer getCustomer() {
         return this.customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
 
