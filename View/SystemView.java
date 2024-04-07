@@ -17,7 +17,7 @@ public class SystemView {
     private ClaimController controller;
     private Scanner scanner;
 
-    public SystemView(ClaimController controller) {
+    public SystemView( ClaimController controller) {
         this.controller = controller;
         this.scanner = new Scanner(System.in);
     }
@@ -126,9 +126,9 @@ public class SystemView {
         //get documents
         System.out.println("Enter documents (separated by comma): "); //get documents (format: abc.pdf)
         String documentsString = scanner.nextLine();
-        Set<String> documents = new HashSet<>(Arrays.asList(documentsString.split(",")));//convert string to list
+        List<String> documents = (Arrays.asList(documentsString.split(",")));//convert string to list
 
-        Claim claim = new Claim(claimID, claimDate, examDate, claimAmount, status, insuredPerson, card, receiverBank, documents); //create claim object
+        Claim claim = new Claim(claimID, claimDate, examDate, claimAmount, status, insuredPerson.getId(), card.getCardNum(), receiverBank, documents); //create claim object
         controller.addClaim(claim);
     }
 

@@ -10,24 +10,30 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ClaimProcessManager implements ClaimProcess{
-    private List<Claim> claims;
-    private Set<Customer> customers;
+    private List<Claim> claimList = new ArrayList<>();
+    private List<Customer> customerList = new ArrayList<>();
 
-    public ClaimProcessManager(Set<Customer> customers, List<Claim> claims) {
-        this.claims = new ArrayList<>();
-        this.customers = new HashSet<>();
+    public ClaimProcessManager(List<Customer> customers, List<Claim> claims) {
+        this.claimList = claims;
+        this.customerList = customers;
+    }
+    public List<Customer> getCustomers() {
+        return customerList;
+    }
+    public List<Claim> getClaims() {
+        return claimList;
     }
 
     @Override
     public void add(Claim claim) {
-        claims.add(claim);
+        claimList.add(claim);
     }
 
     @Override
     public void update(Claim claim) { //update the claim.
-        for (int i = 0; i < claims.size(); i++) {
-            if (claims.get(i).getClaimID().equals(claim.getClaimID())) {
-                claims.set(i, claim);
+        for (int i = 0; i < claimList.size(); i++) {
+            if (claimList.get(i).getClaimID().equals(claim.getClaimID())) {
+                claimList.set(i, claim);
                 break;
             }
         }
@@ -35,12 +41,12 @@ public class ClaimProcessManager implements ClaimProcess{
 
     @Override
     public void delete(Claim claim) { //delete the claim.
-        claims.removeIf(claims -> claim.getClaimID().equals(claim.getClaimID()));
+        claimList.removeIf(claims -> claim.getClaimID().equals(claim.getClaimID()));
     }
 
     @Override
     public Claim getOne(String claimID) { //get the claim by user input id.
-        for (Claim claim : claims) {
+        for (Claim claim : claimList) {
             if (claim.getClaimID().equals(claimID)) {
                 return claim;
             }
@@ -50,7 +56,7 @@ public class ClaimProcessManager implements ClaimProcess{
 
     @Override
     public Set<Claim> getAll() { //get all the claims.
-        Set<Claim> claimSet = new HashSet<>(claims);
+        Set<Claim> claimSet = new HashSet<>(claimList);
         List<Claim> claimList = new ArrayList<>(claimSet);
         Collections.sort(claimList, Comparator.comparing(Claim::getClaimID).reversed());
         Set<Claim> sortedClaims = new HashSet<Claim>(claimList);
@@ -60,7 +66,7 @@ public class ClaimProcessManager implements ClaimProcess{
 
     @Override
     public Customer getCustomerById(String id) {
-        for (Customer customer : customers) {
+        for (Customer customer : customerList) {
             if (customer.getId().equals(id)) {
                 return customer;
             }
@@ -70,7 +76,7 @@ public class ClaimProcessManager implements ClaimProcess{
 
     @Override
     public Customer getCustomerId(String id) {
-        for (Customer customer : customers)
+        for (Customer customer : customerList)
         {
             if (customer.getId().equals(id))
             {
@@ -81,11 +87,11 @@ public class ClaimProcessManager implements ClaimProcess{
     }
 
     public void addCustomer(Customer customer) { //add the customer.
-        customers.add(customer);
+        customerList.add(customer);
     }
 
     public Claim getClaimById(String claimID) { //get the claim by id.
-        for (Claim claim : claims) {
+        for (Claim claim : claimList) {
             if (claim.getClaimID().equals(claimID)) {
                 return claim;
             }

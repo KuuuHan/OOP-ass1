@@ -1,5 +1,6 @@
 package Module;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,16 +12,19 @@ import java.util.Set;
 public abstract class Customer {
     private String id;
     private String name;
-    private String insuranceCard;
+    private String insuranceCardID;
     private InsuranceCard insurancecard;
-    private Set<Claim> claims;
+    private List<Claim> claims;
+    private List<String> claimID;
+    private Bank bank;
 
 
     public Customer(String id, String name, String insuranceCardID, List<String> claimID) {
         this.id = id;                                                // format: "C" + 7 digits
         this.name = name;
-        this.insuranceCard = insuranceCardID;
-        this.claims = claims != null ? claims : new HashSet<>();
+        this.insuranceCardID = insuranceCardID;
+        this.claims = new ArrayList<>();
+        this.claimID = claimID;
     }
 
     // Getters
@@ -40,7 +44,7 @@ public abstract class Customer {
         this.insurancecard = insurancecard;
     }
 
-    public Set<Claim> getClaims() {
+    public List<Claim> getClaims() {
         return claims;
     }
 
@@ -49,5 +53,13 @@ public abstract class Customer {
     @Override
     public String toString() {
         return id + "," + name + "," + insurancecard + "," + claims;
+    }
+
+    public void setBank(Bank bank){
+    this.bank = bank;
+    }
+
+    public CharSequence getInsuranceID() {
+        return insuranceCardID;
     }
 }

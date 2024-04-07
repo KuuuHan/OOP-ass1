@@ -4,7 +4,7 @@ package Module;
  */
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 public class Claim {
     private Customer customer;
@@ -13,23 +13,23 @@ public class Claim {
     private Date examDate;
     private double claimAmount;
     private ClaimStatus claimStatus;
-    private Customer insuredPerson;
-    private InsuranceCard insurancecard;
+    private String insuredPerson;
+    private String insuranceCardID;
     private Bank receiverBank;
-    private Set<String> documents;
+    private List<String> documents;
 
 
     public Claim(String claimID, Date claimDate, Date examDate, double claimAmount,
-                 ClaimStatus claimStatus, Customer insuredPerson, InsuranceCard insurancecard,
-                 Bank receiverBank, Set<String> documents)
+                 ClaimStatus claimStatus, String insuredPersonID, String insuranceCardID,
+                 Bank receiverBank, List<String> documents)
     {
         this.claimID = claimID;                     // ID of the claim (format as f-123456789)
         this.claimDate = claimDate;                 // Date of the claim created
         this.examDate = examDate;                   // Date claim examined
         this.claimAmount = claimAmount;             // Amount of the claim (money)
         this.claimStatus = claimStatus;             // Status of the claim
-        this.insuredPerson = insuredPerson;         // the id of the person who is insured (format as c-1234567)
-        this.insurancecard = insurancecard;        // the insurance card of the person (card number, cardholder, policy owner)
+        this.insuredPerson = insuredPersonID;         // the id of the person who is insured (format as c-1234567)
+        this.insuranceCardID = insuranceCardID;       // the insurance card of the person (card number, cardholder, policy owner)
         this.receiverBank = receiverBank;           // bank information of the claimer (bank name, account holder name, account number)
         this.documents = documents;                // list of proving documents of the claim (e.g. medical bills, doctor's note, etc. formatted as abc.pdf - handle as a String)
     }
@@ -54,19 +54,19 @@ public class Claim {
         return claimStatus;
     }
 
-    public Customer getInsuredPerson() {
+    public String getInsuredPerson() {
         return insuredPerson;
     }
 
-    public InsuranceCard getInsurancecard() {
-        return insurancecard;
+    public String getInsuranceCardID() {
+        return insuranceCardID;
     }
 
     public Bank getReceiverBank() {
         return receiverBank;
     }
 
-    public Set<String> getDocuments() {
+    public List<String> getDocuments() {
         return this.documents;
     }
 
@@ -92,18 +92,7 @@ public class Claim {
     }
 
 
-    @Override
-    public String toString() {
-        return claimID + "," + claimDate + ","
-                + claimAmount + "," + documents + ","
-                + insuredPerson + "," + receiverBank.getBankName()
-                + "," + receiverBank.getAccountHolderName() + ","
-                + receiverBank.getAccountNumber() + ","
-                + insurancecard.getCardNum() + ","
-                + insurancecard.getCardHolder() + ","
-                + insurancecard.getPolicyOwner() + ","
-                + insurancecard.getCardNum();
+    public String getInsuredPersonID() {
+        return this.customer.getId();
     }
-
-
 }
